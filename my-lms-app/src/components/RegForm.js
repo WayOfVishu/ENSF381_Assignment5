@@ -104,17 +104,17 @@ function RegForm() {
                 },
                 body: JSON.stringify(newUser)  // Send user data as JSON
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
+                .then(response => {
+                    if (response.status === 201) {
                         // If the registration is successful, redirect to login page
                         messages.push("Form submitted successfully. Redirecting to login page...");
                         Setmessages(messages);
+                        console.log("Form submitted successfully. Redirecting to login page...");
                         setTimeout(() => {
                             window.location.href = "/login";
                         }, 2000);
                     } else {
-                        messages.push(data.message || "An error occurred during registration.");
+                        messages.push(response.message || "An error occurred during registration.");
                         Setmessages(messages);
                     }
                 })
