@@ -5,7 +5,7 @@
     "instructor": "Dr. John Smith",
     "description": "Master HTML, CSS, and JavaScript.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "instructor": "Dr. Jane Doe",
     "description": "Learn Python, Machine Learning, and AI concepts.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "instructor": "Dr. Emily White",
     "description": "Build Android and iOS apps using Flutter and React Native.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "instructor": "Dr. Robert Green",
     "description": "Understand AWS, Azure, and Google Cloud services.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "instructor": "Dr. Alice Brown",
     "description": "Protect systems against cyber threats and attacks.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "instructor": "Dr. Mark Wilson",
     "description": "Explore AI, neural networks, and deep learning models.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "instructor": "Dr. Olivia Clark",
     "description": "Create 2D and 3D games with Unity and Unreal Engine.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 8,
@@ -61,7 +61,7 @@
     "instructor": "Dr. Sophia Martinez",
     "description": "Learn design principles, Figma, and Adobe XD.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 9,
@@ -69,7 +69,7 @@
     "instructor": "Dr. Daniel Carter",
     "description": "Master smart contracts, Ethereum, and Solidity.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   },
   {
     "id": 10,
@@ -77,6 +77,6 @@
     "instructor": "Dr. Nancy Adams",
     "description": "Understand test automation, Selenium, and TDD.",
     "duration": "12 weeks",
-    "image": "images/course1.jpg"
+    "image": "course1"
   }
 ]

@@ -5,6 +5,8 @@ import { AuthProvider } from './components/LoginForm';
 import HomePage from './pages/HomePage';
 import CoursePage from './pages/CoursePage';
 import LoginForm from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -15,7 +17,8 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/courses" element={<CoursePage />} />
 
-                <Route path="/login" element={<LoginForm />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
 
                 </Routes>
               </AuthProvider>

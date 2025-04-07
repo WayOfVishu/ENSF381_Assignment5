@@ -119,3 +119,52 @@ footer{
   word-wrap: break-word; 
   white-space: pre-wrap; 
 }
+
+.form-styling{
+  /* Center-align the login form using flexbox. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Set background color to #d4d4d4 (light gray). */
+  background-color: #d4d4d4;
+  /* Add padding: 30px, left and right margin: 150px, and border-radius: 30px. */
+  padding: 30px;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 50px;
+  border-radius: 30px;
+  /* Add shadow effects for better visual appeal. */
+  box-shadow: 10px 5px 5px #111111;
+}
+
+.input-field {
+  /* Background color: light yellow. */
+  background-color: lightyellow;
+  /* Padding: 10px. */
+  padding: 10px;
+  /* Rounded corners (border-radius: 5px). */
+  border-radius: 5px;
+  /* Border: dark grey and 3px wide */
+  border-color: darkgray;
+  border-width: 3px;
+  width:20%;
+}
+
+.signup-button{
+  background-color: #4CAF50;
+  padding:10px;
+  border-radius: 5px;
+  margin:10px;
+  opacity: 0.5;
+}
+
+.signup-button:hover{
+
+  background-color: #45A049;
+  opacity: 1.0;
+}
+
+.message-box{
+  border:#000000 1px solid;
+  margin: 20px;
+}
