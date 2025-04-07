@@ -42,7 +42,56 @@ students = [
     }
 ]
 
+@app.route('/register', methods=['POST'])
+def register():
+    # 1. Receive new user information (username, password, etc.) from Signup Page
+    # 2. Check if the username already exists in the students list
+    # 3. If it exists, return a message saying the username is already taken
+    # 4. Otherwise, add the user to the students list and return a success message
+    pass
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+@app.route('/login', methods=['POST'])
+def login():
+    # 1. Accepts username and password in the request body
+    # 2. Validates the credentials against the students list
+    # 3. If credentials are correct, respond with success and redirect the user to Course Enrolment Page
+    # 4. If credentials are wrong, respond with an error message
+    pass
+
+@app.route('/testimonials', methods=['GET'])
+def testimonials():
+    # 1. Return two random testimonials from testimonials.json
+    # 2. This API is called when the Home Page is loaded or refreshed
+    pass
+
+@app.route('/enroll/<student_id>', methods=['POST'])
+def enroll_courses(student_id):
+    # 1. Accept the student ID in the URL (dynamic routing)
+    # 2. Receive course information in the request body
+    # 3. Add the course to the corresponding student's enrolled_courses in the students list
+    # 4. If successful, send confirmation to the frontend
+    # 5. If an error occurs, return an error message to be displayed as an alert
+    pass
+
+@app.route('/drop/<student_id>', methods=['DELETE'])
+def delete_courses(student_id):
+    # 1. Accept the student ID in the URL (dynamic routing)
+    # 2. Receive course information in the request body
+    # 3. Remove the course from the student's enrolled_courses in the students list
+    # 4. If successful, send confirmation to the frontend
+    # 5. If an error occurs, return an error message to show an alert to the user
+    pass
+
+@app.route('/courses', methods=['GET'])
+def get_all_courses():
+    # 1. Return all courses available in courses.json
+    # 2. This API is called when the Course Enrolment Page loads or is refreshed
+    pass
+
+@app.route('/student_courses/<student_id>', methods=['GET'])
+def get_student_courses(student_id):
+    # 1. Accept student ID in the URL (dynamic routing)
+    # 2. Return a list of courses that the student is currently enrolled in
+    # 3. If the student has no enrolled courses, return an empty list
+    # 4. Display the enrolled courses in the Course Enrolment Page
+    pass
