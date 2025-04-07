@@ -9,10 +9,11 @@ function EnrolledCourse({ course, onDrop, credits }) {
   const [enrollmentCount, setEnrollmentCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Image mapping to get the image onto the page.
   let imageMap = {
     'course1': course1Image,
   };
-  
+
   const DropCourse = () => {
     // Decrease enrollment count.
     if (enrollmentCount > 1) {
@@ -20,24 +21,24 @@ function EnrolledCourse({ course, onDrop, credits }) {
     } else {
       // If the count reaches 0, drop the course.
       onDrop(course.name);
-  
+
     }
   };
 
   return (
     <td className="course_item" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-    <img src={imageMap[course.image]} width="30%" height="20%"/>
-    <p>Course: {course.name}</p>
-    <p>Credit Hours: {credits}</p>
-    <button onClick={DropCourse}>Drop Course</button>
+      <img src={imageMap[course.image]} width="30%" height="20%" />
+      <p>Course: {course.name}</p>
+      <p>Credit Hours: {credits}</p>
+      <button onClick={DropCourse}>Drop Course</button>
 
 
-    {isHovered && (
-      <div>
-        <p style={{ fontWeight: 'bold' }}>{course.description}</p>
-      </div>
-    )}
-  </td>
+      {isHovered && (
+        <div>
+          <p style={{ fontWeight: 'bold' }}>{course.description}</p>
+        </div>
+      )}
+    </td>
   );
 }
 
