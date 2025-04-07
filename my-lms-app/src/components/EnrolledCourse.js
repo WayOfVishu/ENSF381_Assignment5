@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import course1Image from '../data/images/course1.jpg';
 
 function EnrolledCourse({ course, onDrop, credits }) {
 
@@ -8,20 +9,24 @@ function EnrolledCourse({ course, onDrop, credits }) {
   const [enrollmentCount, setEnrollmentCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
 
+  let imageMap = {
+    'course1': course1Image,
+  };
+  
   const DropCourse = () => {
     // Decrease enrollment count.
     if (enrollmentCount > 1) {
       setEnrollmentCount(enrollmentCount - 1);
     } else {
       // If the count reaches 0, drop the course.
-      onDrop(course.id);
+      onDrop(course.name);
   
     }
   };
 
   return (
     <td className="course_item" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-    <img src={course.image} width="30%" height="20%"/>
+    <img src={imageMap[course.image]} width="30%" height="20%"/>
     <p>Course: {course.name}</p>
     <p>Credit Hours: {credits}</p>
     <button onClick={DropCourse}>Drop Course</button>

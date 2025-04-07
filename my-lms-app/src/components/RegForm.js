@@ -22,7 +22,7 @@ function RegForm() {
         let charRegex = new RegExp("^[a-zA-Z0-9_-]+$");
         let startWithLetterRegex = new RegExp("^[a-zA-Z]");
         let noSpacesRegex = new RegExp("^[^\\s]*$");  // Use double backslash to escape 's'
-        let noSpecialCharsRegex = new RegExp("^[a-zA-Z0-9 ]*$");
+        let noSpecialCharsRegex = new RegExp("^[a-zA-Z0-9-_]*$");
 
         // Regex expressions required to check password.
         let atLeast8CharactersRegex = new RegExp("^.{8,}$");
@@ -88,11 +88,43 @@ function RegForm() {
         if (messages.length > 0) {
             Setmessages(messages);
         } else {
-            messages.push("Form submitted successfully. Redirecting to login page...");
-            Setmessages(messages);
-            setTimeout(() => {
-                window.location.href = "/login"; // Replace with your actual login page URL
-            }, 2000);
+            // If form is valid, send data to the backend
+            
+            const newUser = {
+                username: username,
+                password: password,
+                email: email
+            };
+
+            // Make POST request to /register endpoint
+            fetch('http://localhost:5000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)  // Send user data as JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // If the registration is successful, redirect to login page
+                    messages.push("Form submitted successfully. Redirecting to login page...");
+                    Setmessages(messages);
+                    setTimeout(() => {
+                        window.location.href = "/login"; // Replace with your actual login page URL
+                    }, 2000);
+                } else {
+                    // If registration fails, display error message
+                    messages.push(data.message || "An error occurred during registration.");
+                    Setmessages(messages);
+                }
+            })
+            .catch(error => {
+                // Handle network or other errors
+                messages.push("An error occurred while submitting the form. Please try again.");
+                messages.push(error.message);
+                Setmessages(messages);
+            });
         }
         
     }

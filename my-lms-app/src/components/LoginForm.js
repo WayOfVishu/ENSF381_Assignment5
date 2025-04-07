@@ -22,8 +22,8 @@ function LoginForm() {
   const { username, setUsername, password, setPassword, authStatus, setAuthStatus } = useContext(AuthContext);
 
 
-async function ValidateLoginInfo(){
-
+async function ValidateLoginInfo(event){
+  event.preventDefault();
   let currentMessages = [];
 
   // Validate user login info.
@@ -45,31 +45,35 @@ async function ValidateLoginInfo(){
     {
       setAuthStatus({ type: "error", message: currentMessages.join(", ") });
     }
+    // If no error, send login request to backend.
   else
     {
-      // If no error occured, call the API to validate the user login info.
-      const data = await fetchDataFromAPI();
+      fetch('http://localhost:5000/login', {  
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password })
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.message === "Login successful") {
 
-      const user = data.find((user) => user.username === username && user.email === password);
+            setAuthStatus({ type: "success", message: data.message });
+            
+            // Store the current user in localStorage
+            localStorage.setItem('student_id', JSON.stringify( data.student_id));
 
-      if(user)
-        {
-          // set status to success
-          setAuthStatus({ type: "success", message: "Login successful!" });
-        }
-      else
-        {
-          setAuthStatus({ type: "error", message: "Invalid username or password" });
-        }
+              window.location.href = "/courses"; 
+            setAuthStatus({ type: "error", message: data.message });
+          }
+      })
+      .catch(error => {
+          console.error("Error during login:", error);
+          setAuthStatus({ type: "error", message: "An error occured attempting to login." });
+      });
     }
 }
-
-  // Function to fetch data from API.
-  async function fetchDataFromAPI(){
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data =  await response.json();
-    return data;
-  }
 
   //Handles redirection to /courses after successful login. Waits for 2 seconds first.
   useEffect(() => {

@@ -1,42 +1,49 @@
 import { useEffect, useState } from "react";
-import courses from "../data/courses";
-import testimonials from "../data/testimonials";
+import course1Image from '../data/images/course1.jpg';
 
 function MainSection() {
     const [coursesToDisplay, setCoursesToDisplay] = useState([]);
     const [testimonialsToDisplay, setTestimonialsToDisplay] = useState([]);
     
+    // Course images are still stored on the front end,
+    // but the data is fetched from the backend.
+    const imageMap = {
+        'course1': course1Image,
+      };
+
     useEffect(() => {
 
-        let currentCourses = [];
-        let currentTestimonials = [];
+
         // Randomly select 3 courses and 2 testimonials to display.
         let numCoursesToDisplay = 3;
-        let numTestimonialsToDisplay = 2;
+
+        // Fetch courses and display 3 random ones.
+        fetch("http://localhost:5000/courses")
+            .then(response => response.json())
+            .then(data => {
+                let selectedCourses = [];
+                while (selectedCourses.length < numCoursesToDisplay && data.length > 0) {
+                    let idx = Math.floor(Math.random() * data.length);
+                    if (!selectedCourses.includes(data[idx])) {
+                        
+                        selectedCourses.push(data[idx]);
+                    }
+                }
+                setCoursesToDisplay(selectedCourses);
+            })
+            .catch(error => console.error("Error fetching courses:", error));
+
+        // Fetch 2 random testimonials.
+        fetch("http://localhost:5000/testimonials")
+        .then(response => response.json())
+        .then(data => setTestimonialsToDisplay(data))
+        .catch(error => console.error("Error fetching testimonials:", error));
 
 
-        while(currentCourses.length < numCoursesToDisplay){
-            
-            //Generate a random index between 0 and the length of the courses array.
-            let randomIndex = Math.floor(Math.random() * courses.length);
-            
-            if(!currentCourses.includes(courses[randomIndex])){
-                currentCourses.push(courses[randomIndex]);
-            }
-        }
 
-        while(currentTestimonials.length < numTestimonialsToDisplay){
 
-            //Generate a random index between 0 and the length of the testimonials array.
-            let randomIndex = Math.floor(Math.random() * testimonials.length);
-            
-            if(!currentTestimonials.includes(testimonials[randomIndex])){
-                currentTestimonials.push(testimonials[randomIndex]);
-            }
-        }
-        setCoursesToDisplay(currentCourses);
-        setTestimonialsToDisplay(currentTestimonials);
-      }, [courses, testimonials]);
+
+      }, []);
     
     
     return (
@@ -52,7 +59,7 @@ function MainSection() {
             <ul class="featured_courses_list">
                 {coursesToDisplay.map(course => (
                     <li key={course.id} class="course_item">
-					    <img src={course.image} height="300px" width="300px"></img>
+					    <img src={imageMap[course.image]} height="300px" width="300px"></img>
 					    <p>Course Name: {course.name}</p>
 					    <p>Description: {course.description}</p>
                     </li>
