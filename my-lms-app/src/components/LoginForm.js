@@ -85,15 +85,16 @@ async function ValidateLoginInfo(){
   return (
       <div>
       <h2>Login</h2>
-
+      <form className="form-styling">
           <label for="name">Username: </label>
-          <input id="name" name="username" onChange={(e) => setUsername(e.target.value)}/>
+          <input className="input-field" id="name" name="username" onChange={(e) => setUsername(e.target.value)}/>
           <br/>
           <label for="password">Password: </label>
-          <input id="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
+          <input className="input-field" id="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
           <br/>
 
-        <input onClick={ValidateLoginInfo} id="Login_Button" type="submit" value="Login"/>
+          <input class="signup-button" onClick={ValidateLoginInfo} id="Login_Button" type="submit" value="Login"/>
+        </form>
         <br/>
         <a href="/login">Forget Password?</a>
 

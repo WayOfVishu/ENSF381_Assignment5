@@ -120,7 +120,7 @@ footer{
   white-space: pre-wrap; 
 }
 
-.signup-form{
+.form-styling{
   /* Center-align the login form using flexbox. */
   display: flex;
   flex-direction: column;

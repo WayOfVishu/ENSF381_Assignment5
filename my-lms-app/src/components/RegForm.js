@@ -18,30 +18,31 @@ function RegForm() {
         const messages = [];
 
         // Regex expressions required to check username.
-        let lengthRegex = new RegExp("/^.{3,20}$");
+        let lengthRegex = new RegExp("^.{3,20}$");
         let charRegex = new RegExp("^[a-zA-Z0-9_-]+$");
         let startWithLetterRegex = new RegExp("^[a-zA-Z]");
-        let noSpacesRegex = new RegExp("\\s");
+        let noSpacesRegex = new RegExp("^[^\\s]*$");  // Use double backslash to escape 's'
         let noSpecialCharsRegex = new RegExp("^[a-zA-Z0-9 ]*$");
 
         // Regex expressions required to check password.
-        let atLeast8CharactersRegex =  new RegExp("^.{8,}$");
+        let atLeast8CharactersRegex = new RegExp("^.{8,}$");
         let atLeast1UppercaseRegex = new RegExp("[A-Z]");
         let atLeast1LowercaseRegex = new RegExp("[a-z]");
         let atLeast1DigitRegex = new RegExp("[0-9]");
         let atLeast1SpecialCharRegex = new RegExp("[!@#$%^&*]");
-        
+
         // Must match password to confirm password.
         let confirmPasswordCheck = (password === confirmPassword);
 
         // Regex expression required to check email.
-       let emailFormatRegex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        let emailFormatRegex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+
 
         if(!lengthRegex.test(username)){
             messages.push("Username must be between 3 and 20 characters long.");
         }
         if(!charRegex.test(username)){
-            messages.push("Username must contain at least one letter, one number, and one special character.");
+            messages.push("Allowed characters in username: alphanumeric characters (letters A-Z, numbers 0-9), hyphens (-), and underscores (_)");
         }
         if(!startWithLetterRegex.test(username)){
             messages.push("Username must start with a letter.");
@@ -50,7 +51,7 @@ function RegForm() {
             messages.push("Username must not contain spaces.");
         }
         if(!noSpecialCharsRegex.test(username)){
-            messages.push("Username must not contain special characters.");
+            messages.push("Username must not contain special characters other than hyphens (-), and underscores (_)");
         }
         if(!lengthRegex.test(password)){
             messages.push("Password must be between 8 and 20 characters long.");
@@ -101,15 +102,15 @@ function RegForm() {
     <div className="RegForm">
         <h1>Sign Up</h1>
 
-        <form className="signup-form" onSubmit={ValidateForm}>
+        <form className="form-styling" onSubmit={ValidateForm}>
             <label for="username">Username:</label>
             <input className="input-field" type="text" id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/><br/>
 
             <label for="password">Password:</label>
-            <input className="input-field" type="text" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/><br/>
+            <input className="input-field" type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/><br/>
 
             <label for="confirm-password">Confirm Password:</label>
-            <input className="input-field" type="text" id="confirm-password" name="confirm-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} /><br/>
+            <input className="input-field" type="password" id="confirm-password" name="confirm-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} /><br/>
 
             <label for="email">Email:</label>
             <input className="input-field" type="text" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/><br/>
