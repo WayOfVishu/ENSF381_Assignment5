@@ -59,8 +59,8 @@ function LoginForm() {
 
             // Store the current user in localStorage
             localStorage.setItem('student_id', JSON.stringify(data.student_id));
-
-            window.location.href = "/courses";
+          }
+          else if(data.message === "Invalid credentials") {
             setAuthStatus({ type: "error", message: data.message });
           }
         })
