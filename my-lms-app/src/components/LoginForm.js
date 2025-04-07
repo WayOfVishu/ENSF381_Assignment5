@@ -90,7 +90,7 @@ function LoginForm() {
         <input className="input-field" id="name" name="username" onChange={(e) => setUsername(e.target.value)} />
         <br />
         <label for="password">Password: </label>
-        <input className="input-field" id="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+        <input className="input-field" id="password" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
         <br />
 
         <input class="signup-button" onClick={ValidateLoginInfo} id="Login_Button" type="submit" value="Login" />
